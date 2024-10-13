@@ -57,9 +57,10 @@ const PlayerContextProvider = ({ children }) => {
   const next = async () => {
     songsData.map(async (item, index) => {
       if (track._id === item._id && index < songsData.length) {
-        await setTrack(songsData[index+1]);
-        await audioRef.current.play();
-        setPlayStatus(true);
+      const nextIndex = (index + 1) % songsData.length; 
+      await setTrack(songsData[nextIndex]);
+      await audioRef.current.play();
+      setPlayStatus(true);
       }
     })
   };
