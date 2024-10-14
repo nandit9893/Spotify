@@ -1,3 +1,3 @@
-const url = "http://localhost:8000";
+const url = "https://spotify-back-end.onrender.com";
 
 export default url;
