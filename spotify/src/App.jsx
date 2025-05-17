@@ -22,13 +22,13 @@ const App = () => {
         : 
         (
           songsData.length > 0 && (
-            <div>
+            <>
               <div className="h-[90%] flex">
                 <SideBar />
                 <Display />
               </div>
               <Player />
-            </div>
+            </>
           )
         )
       }
