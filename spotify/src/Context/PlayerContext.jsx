@@ -5,6 +5,7 @@ export const PlayerContext = createContext();
 
 const PlayerContextProvider = ({ children }) => {
   const url = "https://spotify-back-end.onrender.com";
+  const [loading, setLoading] = useState(false);
   const audioRef = useRef();
   const seekBg = useRef();
   const seekBar = useRef();
@@ -70,16 +71,20 @@ const PlayerContextProvider = ({ children }) => {
   };
 
   const getAllSongs = async () => {
+    setLoading(true);
     const newURL = `${url}/spotify/nandit/songs/list/song`;
     try {
       const response = await axios.get(newURL);
       if (response.data.success) {
         setSongsData(response.data.data);
         setTrack(response.data.data[0]);
+         setLoading(false);
       } else {
       }
     } catch (error) {
       console.log(error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -136,6 +141,7 @@ const PlayerContextProvider = ({ children }) => {
     seekSong,
     songsData,
     albumsData,
+    loading,
   };
 
   return (
